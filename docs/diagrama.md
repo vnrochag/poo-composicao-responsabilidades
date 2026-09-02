@@ -1,19 +1,43 @@
 # Diagrama da estação meteorológica
 
-Complete as relações, multiplicidades, atributos e operações que faltam. O diagrama final deve corresponder ao código entregue.
-
 ```mermaid
 classDiagram
+
     class SensorTemperatura {
+
         -valor_: double
+
         +atualizar(valor) bool
+
         +valor() double
+
     }
+
     class AlarmeTermico {
-        %% TODO: estado e operações públicas
+
+        -ligado_: bool
+
+        +avaliar(temperatura) void
+
+        +estaLigado() bool
+
     }
+
     class EstacaoMeteorologica {
-        %% TODO: partes e operações públicas
+
+        -sensor_: SensorTemperatura
+
+        -alarme_: AlarmeTermico
+
+        +EstacaoMeteorologica(tag, temperaturaInicial)
+
+        +registrarTemperatura(temperatura) bool
+
+        +temperatura() double
+
+        +alarmeLigado() bool
+
     }
-    %% TODO: composição e multiplicidades
-```
+
+    EstacaoMeteorologica *-- "1" SensorTemperatura
+    EstacaoMeteorologica *-- "1" AlarmeTermico
